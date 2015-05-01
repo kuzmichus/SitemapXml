@@ -1,0 +1,23 @@
+{
+    "name": "kuzmichus/sitemap-xml",
+    "description": "Generated Sitemap XML file",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://github.com/kuzmichus/SitemapXml",
+    "authors": [
+        {
+            "name": "Sergey V. Kuzin",
+            "email": "sergey@kuzin.name",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SitemapXml\\": "library/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
