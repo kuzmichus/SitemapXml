@@ -1,6 +1,7 @@
 <?php
 
 namespace SitemapXml;
+
 use SitemapXml\Validators\Availability;
 
 /**
@@ -8,17 +9,17 @@ use SitemapXml\Validators\Availability;
  */
 abstract class Generator
 {
-    const ALWAYS    = 'always';
-    const HOURLY    = 'hourly';
-    const DAILY     = 'daily';
-    const WEEKLY    = 'weekly';
-    const MONTHLY   = 'monthly';
-    const YEARLY    = 'yearly';
-    const NEVER     = 'never';
+    const ALWAYS = 'always';
+    const HOURLY = 'hourly';
+    const DAILY = 'daily';
+    const WEEKLY = 'weekly';
+    const MONTHLY = 'monthly';
+    const YEARLY = 'yearly';
+    const NEVER = 'never';
 
-    const SPLIT_NONE        = 0;
-    const SPLIT_BY_NUMBER   = 1;
-    const SPLIT_BY_SIZE     = 2;
+    const SPLIT_NONE = 0;
+    const SPLIT_BY_NUMBER = 1;
+    const SPLIT_BY_SIZE = 2;
 
     /**
      * @var string
@@ -33,7 +34,7 @@ abstract class Generator
     /**
      * @var string
      */
-    private $indexFilePattern   = 'sitemap.xml';
+    private $indexFilePattern = 'sitemap.xml';
     /**
      * @var int
      */
@@ -96,6 +97,72 @@ abstract class Generator
      * @var null
      */
     private $publicIndexPath = null;
+
+    /**
+     * @var \Symfony\Component\Console\Output\OutputInterface
+     */
+    private $io = null;
+
+    /**
+     * @param int $maxSizeFile
+     */
+    public function setMaxSizeFile($maxSizeFile)
+    {
+        $this->maxSizeFile = $maxSizeFile;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxSizeFile()
+    {
+        return $this->maxSizeFile;
+    }
+
+    /**
+     * @param int $splitRecords
+     */
+    public function setSplitRecords($splitRecords)
+    {
+        $this->splitRecords = $splitRecords;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSplitRecords()
+    {
+        return $this->splitRecords;
+    }
+
+
+    /**
+     * @param \Symfony\Component\Console\Output\OutputInterface $io
+     */
+    public function setIo(\Symfony\Component\Console\Output\OutputInterface $io)
+    {
+        $this->io = $io;
+        return $this;
+    }
+
+    public function writeln($messages, $type = 0)
+    {
+        if ($this->io !== null && interface_exists('\Symfony\Component\Console\Output\OutputInterface')) {
+            if ($this->io instanceof \Symfony\Component\Console\Output\OutputInterface) {
+                $this->io->writeln($messages, $type);
+            }
+        }
+    }
+
+    /**
+     * @return null
+     */
+    public function getIo()
+    {
+        return $this->io;
+    }
 
     /**
      * @param string $localIndexFile
@@ -248,6 +315,7 @@ abstract class Generator
         $this->countLine = 0;
         $this->sizeFile = 0;
 
+        $this->writeln('Try making new file ' . $this->getFileName());
         $this->handle = fopen($this->tempFile, 'w');
     }
 
@@ -286,6 +354,7 @@ abstract class Generator
         $fileName = $this->getFileName();
 
         if ($this->multyMap) {
+            $this->writeln('Filling sitemap index... ');
             $f = fopen($fileName, 'w');
             $this->getIndexGenerator()->add($this->getRemoteFileName());
             $this->getIndexGenerator()->finish();
@@ -299,6 +368,7 @@ abstract class Generator
         $this->tempFile = '';
         fwrite($f, $this->endFile());
         fclose($f);
+        $this->writeln('Finished.');
     }
 
     /**
@@ -307,6 +377,8 @@ abstract class Generator
     public function flush()
     {
         $this->multyMap = true;
+
+        $this->writeln('File is filled. Closing...');
 
         $fileName = $this->getFileName();
         fclose($this->handle);
@@ -326,6 +398,7 @@ abstract class Generator
         $this->tempFile = tempnam(sys_get_temp_dir(), 'sitemap');
         $this->countLine = 0;
         $this->sizeFile = 0;
+        $this->writeln('Making new file "' . $this->getFileName() . '"');
         $this->handle = fopen($this->tempFile, 'w');
 
         return $this;
@@ -357,7 +430,7 @@ abstract class Generator
 
         if ($this->autoSplit == self::SPLIT_BY_NUMBER && $this->countLine >= $this->splitRecords) {
             $this->flush();
-        } elseif($this->autoSplit == self::SPLIT_BY_SIZE && $this->sizeFile + strlen($content) >= (1024 * 1024 * 10 - strlen($this->beginFile()) - strlen($this->endFile()))) {
+        } elseif ($this->autoSplit == self::SPLIT_BY_SIZE && $this->sizeFile + strlen($content) >= ($this->maxSizeFile - strlen($this->beginFile()) - strlen($this->endFile()))) {
             $this->flush();
         }
 
@@ -379,7 +452,7 @@ abstract class Generator
      */
     protected function beginFile()
     {
-        return '<?xml version="1.0" encoding="UTF-8" ?>' .PHP_EOL;
+        return '<?xml version="1.0" encoding="UTF-8" ?>' . PHP_EOL;
     }
 
     /**

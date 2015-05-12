@@ -21,7 +21,8 @@
         }
     },
     "suggest": {
-        "ext-curl" : "It will check the availability of the resource to add to the sitemap.xml"
+        "ext-curl" : "It will check the availability of the resource to add to the sitemap.xml",
+        "symfony/console" : "It allows you to display information about the process"
     },
     "config": {
         "optimize-autoloader": true
@@ -30,5 +31,8 @@
         "branch-alias": {
             "dev-master": "0.1.x-dev"
         }
+    },
+    "require-dev": {
+        "symfony/console": "2.8.*@dev"
     }
 }
