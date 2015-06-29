@@ -1,3 +1,6 @@
+[![Build Status](https://scrutinizer-ci.com/g/kuzmichus/SitemapXml/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kuzmichus/SitemapXml/build-status/master)
+
+
 # SitemapXml
 Generation Sitemap XML file
 
