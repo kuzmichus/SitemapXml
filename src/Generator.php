@@ -147,6 +147,10 @@ abstract class Generator
         return $this;
     }
 
+    /**
+     * @param $messages
+     * @param int $type
+     */
     public function writeln($messages, $type = 0)
     {
         if ($this->io !== null && interface_exists('\Symfony\Component\Console\Output\OutputInterface')) {
@@ -191,7 +195,7 @@ abstract class Generator
      */
     public function setLocalPath($localPath)
     {
-        $this->localPath = rtrim($localPath, DIRECTORY_SEPARATOR);
+        $this->localPath = realpath(rtrim($localPath, DIRECTORY_SEPARATOR));
         return $this;
     }
 
