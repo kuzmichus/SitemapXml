@@ -444,7 +444,7 @@ abstract class Generator
     }
 
     /**
-     * @param $url
+     * @param string $url
      * @param array $params
      * @return array
      */

@@ -43,7 +43,7 @@ class IndexGenerator extends Generator
      */
     protected function endFile()
     {
-        return Formatter::format('</sitemapindex>').
+        return Formatter::format('</sitemapindex>') .
         parent::endFile();
     }
 }
