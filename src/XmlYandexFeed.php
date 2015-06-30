@@ -26,7 +26,7 @@ class XmlYandexFeed extends XmlGenerator
 
             $feedLines[] = Formatter::format('<ovs:video>', 3);
             if (isset($params['ovs:video']['ovs:feed'])) {
-                $feedLines[]= Formatter::format('<ovs:feed>' . $params['ovs:video']['ovs:feed'] . '</ovs:feed>', 4);
+                $feedLines[] = Formatter::format('<ovs:feed>' . $params['ovs:video']['ovs:feed'] . '</ovs:feed>', 4);
             }
             $feedLines[] = Formatter::format('</ovs:video>', 3);
         }

@@ -29,8 +29,8 @@ class XmlGenerator extends Generator
     private $xmlns = array();
 
     /**
-     * @param $namespace
-     * @param $url
+     * @param string $namespace
+     * @param string $url
      * @return $this
      */
     public function addXmlns($namespace, $url)
@@ -64,7 +64,7 @@ class XmlGenerator extends Generator
     /**
      * @param $url
      * @param array $params
-     * @return array
+     * @return string[]
      */
     protected function buildRecord($url, $params = array())
     {
