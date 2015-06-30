@@ -148,7 +148,7 @@ abstract class Generator
     }
 
     /**
-     * @param $messages
+     * @param string $messages
      * @param int $type
      */
     public function writeln($messages, $type = 0)
@@ -161,7 +161,7 @@ abstract class Generator
     }
 
     /**
-     * @return null
+     * @return \Symfony\Component\Console\Output\OutputInterface
      */
     public function getIo()
     {
@@ -423,7 +423,7 @@ abstract class Generator
     }
 
     /**
-     * @param $url
+     * @param string $url
      * @param array $params
      */
     public function add($url, $params = array())
