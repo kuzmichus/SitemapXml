@@ -1,7 +1,6 @@
 <?php
 namespace SitemapXml\Helper;
 
-
 /**
  * Class Formatter
  * @package SitemapXml\Helper
@@ -11,12 +10,12 @@ class Formatter
     /**
      * @var bool
      */
-    static private $enabled = false;
+    private static $enabled = false;
 
     /**
      *
      */
-    static public function enable()
+    public static function enable()
     {
         self::$enabled = true;
     }
@@ -24,7 +23,7 @@ class Formatter
     /**
      *
      */
-    static public function disable()
+    public static function disable()
     {
         self::$enabled = false;
     }
@@ -32,7 +31,7 @@ class Formatter
     /**
      * @return bool
      */
-    static public function isEnabled()
+    public static function isEnabled()
     {
         return self::$enabled;
     }
@@ -42,7 +41,7 @@ class Formatter
      * @param int $level
      * @return string
      */
-    static public function format($line, $level = 1)
+    public static function format($line, $level = 1)
     {
         if (self::isEnabled()) {
             $line = str_repeat('    ', $level - 1) . $line . PHP_EOL;

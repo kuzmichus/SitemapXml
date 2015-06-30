@@ -3,7 +3,6 @@
 
 namespace SitemapXml;
 
-
 use SitemapXml\Helper\Formatter;
 use SitemapXml\Validators\ChangeFreq;
 use SitemapXml\Validators\Date;

@@ -3,7 +3,6 @@
 
 namespace SitemapXml;
 
-
 use SitemapXml\Helper\Formatter;
 use SitemapXml\Validators\Date;
 use SitemapXml\Validators\Rating;
@@ -156,5 +155,4 @@ class XmlGoogleGenerator extends XmlGenerator
 
         return $lines;
     }
-
 }

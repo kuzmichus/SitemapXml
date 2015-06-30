@@ -1,5 +1,6 @@
 <?php
 
+use SitemapXml\Exception\ResourceNotFound;
 use SitemapXml\Generator;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -21,13 +22,11 @@ $generator
     ->start();
 
 try {
-
     $generator->add('http://example.com/');
     $generator->add('http://example.com/page1/');
     $generator->add('http://example.com/page2/');
     $generator->add('http://example.com/page3/');
-
-} catch (\SitemapXml\Exception\ResourceNotFound $e) {
+} catch (ResourceNotFound $e) {
     $io->writeln('<error>' . $e->getMessage() . '</error>');
 }
 

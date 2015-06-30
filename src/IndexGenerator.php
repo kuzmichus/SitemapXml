@@ -1,7 +1,6 @@
 <?php
 namespace SitemapXml;
 
-
 use SitemapXml\Helper\Formatter;
 use SitemapXml\Validators\Availability;
 
@@ -11,7 +10,6 @@ use SitemapXml\Validators\Availability;
  */
 class IndexGenerator extends Generator
 {
-
     /**
      * @param $url
      * @param array $params

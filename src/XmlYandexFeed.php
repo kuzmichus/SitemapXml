@@ -3,7 +3,6 @@
 
 namespace SitemapXml;
 
-
 use SitemapXml\Helper\Formatter;
 
 /**
@@ -36,5 +35,4 @@ class XmlYandexFeed extends XmlGenerator
 
         return $lines;
     }
-
 }

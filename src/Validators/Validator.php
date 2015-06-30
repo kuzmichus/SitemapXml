@@ -12,5 +12,4 @@ abstract class Validator
      * @return mixed
      */
     abstract public static function Validation($data);
-
 }

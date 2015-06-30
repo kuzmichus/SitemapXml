@@ -1,7 +1,6 @@
 <?php
 namespace SitemapXml\Validators;
 
-
 use SitemapXml\Exception\NotAllowedValue;
 
 /**
@@ -10,7 +9,6 @@ use SitemapXml\Exception\NotAllowedValue;
  */
 class Rating extends Validator
 {
-
     /**
      * @param $data
      * @return bool

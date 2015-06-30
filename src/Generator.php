@@ -352,7 +352,6 @@ abstract class Generator
      */
     public function finish()
     {
-
         fclose($this->handle);
 
         $fileName = $this->getFileName();
@@ -466,6 +465,4 @@ abstract class Generator
     {
         return PHP_EOL;
     }
-
-
 }

@@ -3,7 +3,6 @@
 
 namespace SitemapXml\Validators;
 
-
 use SitemapXml\Exception\NotAllowedValue;
 
 /**
@@ -12,7 +11,6 @@ use SitemapXml\Exception\NotAllowedValue;
  */
 class Date extends Validator
 {
-
     /**
      * @param $date
      * @return bool

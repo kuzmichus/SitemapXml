@@ -3,7 +3,6 @@
 
 namespace SitemapXml\Validators;
 
-
 use SitemapXml\Exception\NotAllowedValue;
 
 /**
@@ -15,7 +14,7 @@ class ChangeFreq extends Validator
     /**
      * @var array
      */
-    static private $afllowedValue = array(
+    private static $afllowedValue = array(
         'always',
         'hourly',
         'daily',

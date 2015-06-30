@@ -3,7 +3,6 @@
 
 namespace SitemapXml\Validators;
 
-
 use SitemapXml\Exception\ResourceMovedPermanently;
 use SitemapXml\Exception\ResourceNotFound;
 
@@ -20,13 +19,13 @@ class Availability extends Validator
     /**
      * @var string
      */
-    static private $strictness = self::STRICT_MIDDLE;
+    private static $strictness = self::STRICT_MIDDLE;
 
     /**
      * @param $strictness
      * @throws NotAllowedValue
      */
-    static public function setStrictness($strictness)
+    public static function setStrictness($strictness)
     {
         if (!in_array($strictness, array(self::STRICT_SOFT, self::STRICT_MIDDLE, self::STRICT_HARD))) {
             throw new NotAllowedValue($strictness . ' not allowed value in Availability::setStrictness()');
@@ -37,7 +36,7 @@ class Availability extends Validator
     /**
      * @return string
      */
-    static public function getStrictness()
+    public static function getStrictness()
     {
         return self::$strictness;
     }
@@ -48,7 +47,7 @@ class Availability extends Validator
      * @throws \SitemapXml\Exception\ResourceMovedPermanently
      * @throws \SitemapXml\Exception\ResourceNotFound
      */
-    static public function Validation($data)
+    public static function Validation($data)
     {
         if (self::getStrictness() == self::STRICT_SOFT) {
             return true;
@@ -67,7 +66,7 @@ class Availability extends Validator
         if ($code == 404 && self::getStrictness() >= self::STRICT_MIDDLE) {
             throw new ResourceNotFound('Resource ' . $data . ' not found.');
         } elseif (self::getStrictness() == self::STRICT_HARD) {
-            if($code == 301) {
+            if ($code == 301) {
                 throw new ResourceMovedPermanently('Resource ' . $data . ' moved permanently.');
             } elseif ($code != 200) {
                 throw new ResourceNotFound('Resource ' . $data . ' return ' . $code . ' code.');
@@ -76,4 +75,4 @@ class Availability extends Validator
 
         return true;
     }
-} 
+}
