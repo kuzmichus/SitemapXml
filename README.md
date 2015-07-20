@@ -1,4 +1,4 @@
-[![Build Status](https://scrutinizer-ci.com/g/kuzmichus/SitemapXml/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kuzmichus/SitemapXml/build-status/master)
+[![Code Climate](https://codeclimate.com/github/kuzmichus/SitemapXml/badges/gpa.svg)](https://codeclimate.com/github/kuzmichus/SitemapXml) [![Build Status](https://scrutinizer-ci.com/g/kuzmichus/SitemapXml/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kuzmichus/SitemapXml/build-status/master)
 
 
 # SitemapXml
